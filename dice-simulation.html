@@ -26,6 +26,13 @@
             margin-bottom: 20px;
         }
 
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         .dice {
             font-size: 100px;
             display: flex;
@@ -33,7 +40,6 @@
             align-items: center;
             width: 100px;
             height: 100px;
-            margin: 20px auto;
             background: #fff;
             border: 5px solid #333;
             border-radius: 10px;
@@ -74,7 +80,14 @@
             <option value="12">12 Sides</option>
             <option value="20">20 Sides</option>
         </select>
-        <div class="dice" id="dice">1</div>
+        <select id="number-of-dice">
+            <option value="1">1 Dice</option>
+            <option value="2">2 Dice</option>
+            <option value="3">3 Dice</option>
+            <option value="4">4 Dice</option>
+        </select>
+        <div class="dice-container" id="dice-container">
+        </div>
         <button id="roll">Roll Dice</button>
     </div>
     <script>
@@ -82,9 +95,18 @@
 
         function rollDice() {
             const sides = parseInt(document.getElementById('dice-sides').value);
-            const dice = document.getElementById('dice');
-            const roll = Math.floor(Math.random() * sides) + 1;
-            dice.innerText = roll;
+            const numberOfDice = parseInt(document.getElementById('number-of-dice').value);
+            const diceContainer = document.getElementById('dice-container');
+
+            diceContainer.innerHTML = '';
+
+            for (let i = 0; i < numberOfDice; i++) {
+                const dice = document.createElement('div');
+                dice.className = 'dice';
+                const roll = Math.floor(Math.random() * sides) + 1;
+                dice.innerText = roll;
+                diceContainer.appendChild(dice);
+            }
         }
     </script>
 </body>
