@@ -53,12 +53,27 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        select {
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Dice Simulation</h1>
+        <select id="dice-sides">
+            <option value="6">6 Sides</option>
+            <option value="10">10 Sides</option>
+            <option value="12">12 Sides</option>
+            <option value="20">20 Sides</option>
+        </select>
         <div class="dice" id="dice">1</div>
         <button id="roll">Roll Dice</button>
     </div>
@@ -66,11 +81,11 @@
         document.getElementById('roll').addEventListener('click', rollDice);
 
         function rollDice() {
+            const sides = parseInt(document.getElementById('dice-sides').value);
             const dice = document.getElementById('dice');
-            const roll = Math.floor(Math.random() * 6) + 1;
+            const roll = Math.floor(Math.random() * sides) + 1;
             dice.innerText = roll;
         }
-
     </script>
 </body>
 
