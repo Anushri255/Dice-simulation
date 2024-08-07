@@ -63,6 +63,13 @@
         <button id="roll">Roll Dice</button>
     </div>
     <script>
+        document.getElementById('roll').addEventListener('click', rollDice);
+
+        function rollDice() {
+            const dice = document.getElementById('dice');
+            const roll = Math.floor(Math.random() * 6) + 1;
+            dice.innerText = roll;
+        }
 
     </script>
 </body>
